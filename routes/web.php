@@ -4,6 +4,7 @@ use \App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Inertia\Inertia;
 
 /*
@@ -18,14 +19,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('login', [
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('login');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', InitializeTenancyByDomain::class])->group(function () {
     Route::get('/dashboard', [ItemController::class, 'index'])->name('dashboard');
     Route::post('/create', [ItemController::class, 'create'])->name('post.createItem');
     Route::delete('/{id}/remove', [ItemController::class, 'destroy'])->name('deleteItem');

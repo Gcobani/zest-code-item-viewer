@@ -15,7 +15,12 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => [
+        'api/*',
+        'sanctum/csrf-cookie',
+        '*.zest-code-item-viewer.test',
+        'zest-code-item-viewer.test'
+    ],
 
     'allowed_methods' => ['*'],
 

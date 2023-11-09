@@ -35,7 +35,7 @@
                         </tr>
                         <tr>
                             <td class="py-1">
-                                <button type="button" @click="adding()" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add item</button>
+                                <button type="button" @click="adding()" :class="`bg-${primary_color}-600`" class="block rounded-md px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add item</button>
                             </td>
                         </tr>
                         </tbody>
@@ -51,7 +51,7 @@ import {ref, watch} from "vue";
 import { router } from '@inertiajs/vue3'
 import debounce from 'lodash/debounce';
 
-defineProps({ items: Array})
+defineProps({ items: Array, primary_color: String})
 
 let isAdding = ref(false)
 let itemName = ref('')

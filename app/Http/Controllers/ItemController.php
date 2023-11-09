@@ -13,9 +13,13 @@ class ItemController extends Controller
     /**
      * @return \Inertia\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Dashboard', ['items' => Item::all()]);
+        return Inertia::render('Dashboard', [
+            'items' => Item::all(),
+            'appLogo' => tenancy()->tenant->logo,
+            'primary_color' => tenancy()->tenant->primary_color
+        ]);
     }
 
     /**

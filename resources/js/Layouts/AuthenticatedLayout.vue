@@ -6,8 +6,11 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import ApplicationLogo2 from "@/Components/ApplicationLogo2.vue";
 
 const showingNavigationDropdown = ref(false);
+
+defineProps({appLogo: String})
 </script>
 
 <template>
@@ -21,7 +24,8 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationLogo
+                                    <ApplicationLogo2 v-if="appLogo === 'ApplicationLogo2'" class="block h-9 w-auto fill-current text-gray-800" />
+                                    <ApplicationLogo v-else
                                         class="block h-9 w-auto fill-current text-gray-800"
                                     />
                                 </Link>
