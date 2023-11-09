@@ -32,7 +32,11 @@ class ItemController extends Controller
             'name' => $request->get('name'),
             'createdBy' => auth()->user()->getEmail()
         ]);
-        return redirect(route('dashboard', ['items' => Item::all()]));
+        return redirect(route('dashboard', [
+            'items' => Item::all(),
+            'appLogo' => tenancy()->tenant->logo,
+            'primary_color' => tenancy()->tenant->primary_color
+        ]));
     }
 
     /**
@@ -44,7 +48,11 @@ class ItemController extends Controller
         $item = Item::find($id);
 
         if($item->delete()) {
-            return redirect(route('dashboard', ['items' => Item::all()]));
+            return redirect(route('dashboard', [
+                'items' => Item::all(),
+                'appLogo' => tenancy()->tenant->logo,
+                'primary_color' => tenancy()->tenant->primary_color
+            ]));
         } else {
             return redirect()->back()->withErrors('Something went wrong');
         }
