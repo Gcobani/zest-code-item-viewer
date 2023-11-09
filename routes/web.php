@@ -2,7 +2,6 @@
 
 use \App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Inertia\Inertia;
@@ -19,7 +18,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('login');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
 });
 
 Route::middleware(['auth', InitializeTenancyByDomain::class])->group(function () {
